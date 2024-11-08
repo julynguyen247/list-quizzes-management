@@ -1,7 +1,7 @@
 import "react-pro-sidebar/dist/css/styles.css";
 import { DiReact } from "react-icons/di";
 import { MDashboard } from "react-icons/md";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ProSidebar,
   Menu,
@@ -22,7 +22,7 @@ import {
 import sidebarBg from "../../assets/bg2.jpg";
 
 const SideBar = ({ image, collapsed, rtl, toggled, handleToggleSidebar }) => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   return (
     <>
       <ProSidebar
@@ -47,9 +47,7 @@ const SideBar = ({ image, collapsed, rtl, toggled, handleToggleSidebar }) => {
             }}
           >
             <DiReact size={"3em"} color={"00bfff"} />
-            <span onClick={()=>navigate('/')}>
-              July
-              </span>
+            <span onClick={() => navigate("/")}>July</span>
           </div>
         </SidebarHeader>
 
@@ -78,7 +76,10 @@ const SideBar = ({ image, collapsed, rtl, toggled, handleToggleSidebar }) => {
                 Quản lý bài quiz
                 <Link to="/admins/manage-quizzes" />
               </MenuItem>
-              <MenuItem> Quản lý câu hỏi</MenuItem>
+              <MenuItem>
+                Quản lý câu hỏi
+                <Link to="/admins/manage-questions" />
+              </MenuItem>
             </SubMenu>
           </Menu>
         </SidebarContent>
