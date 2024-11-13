@@ -33,6 +33,25 @@ const Questions = (props) => {
   ];
   const [questions, setQuestions] = useState(initQuestions);
   const [isPreviewImage, setIsPreviewImage] = useState(false);
+  useEffect(() => {
+    fetchQuiz();
+  }, []);
+
+  const fetchQuiz = async () => {
+    let res = await getAllQuizForAdmin();
+    if (res && res.EC === 0) {
+      let newQuiz = res.DT.map((item) => {
+        return {
+          value: item.id,
+          label: `${item.id}-${item.description}`,
+        };
+      });
+      setListQuiz(newQuiz);
+    }else {
+      toast.error("Failed to fetch quizzes.");
+    }
+    
+  };
   const handleAddRemoveQuestion = (type, id) => {
     if (type === "ADD") {
       const newQuestion = {
@@ -198,22 +217,7 @@ const Questions = (props) => {
   };
   const [selectedQuiz, setSelectedQuiz] = useState({});
   const [listQuiz, setListQuiz] = useState([]);
-  useEffect(() => {
-    fetchQuiz();
-  }, []);
-
-  const fetchQuiz = async () => {
-    let res = await getAllQuizForAdmin();
-    if (res && res.EC === 0) {
-      let newQuiz = res.DT.map((item) => {
-        return {
-          value: item.id,
-          label: `${item.id}-${item.description}`,
-        };
-      });
-      setListQuiz(newQuiz);
-    }
-  };
+ 
   return (
     <div className="question-container">
       <div className="title">Manage Questions</div>

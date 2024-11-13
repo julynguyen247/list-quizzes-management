@@ -7,6 +7,13 @@ body{
   text-align: center;
 }
 
+.languages{
+  .dropdown-toggle::after {
+    display:none !important;
+  }
+}
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
